@@ -1,6 +1,6 @@
 # Introduction
 
-This is the implementation of our paper *An Upload-Efficient Scheme for Transferring Knowledge From a Server-Side Pre-trained Generator to Clients in Heterogeneous Federated Learning* (accepted by CVPR 2024). 
+This is the implementation of our paper [*An Upload-Efficient Scheme for Transferring Knowledge From a Server-Side Pre-trained Generator to Clients in Heterogeneous Federated Learning*](https://arxiv.org/abs/2403.15760) (accepted by CVPR 2024). 
 
 *Key words: large pre-trained generator, knowledge transfer, federated learning, data heterogeneity, model heterogeneity*
 
