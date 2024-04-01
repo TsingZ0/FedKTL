@@ -8,6 +8,17 @@ This is the implementation of our paper [*An Upload-Efficient Scheme for Transfe
 
 Take away: we propose FedKTL, a knowledge transfer scheme that transfers pre-existing common knowledge from server-side large public pre-trained generators to participating clients, irrespective of the generators' pre-training datasets, while also sharing consensus knowledge among participating clients. 
 
+**Citation**
+
+```
+@inproceedings{zhang2024upload,
+  title={An Upload-Efficient Scheme for Transferring Knowledge From a Server-Side Pre-trained Generator to Clients in Heterogeneous Federated Learning},
+  author={Zhang, Jianqing and Liu, Yang and Hua, Yang and Cao, Jian},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year={2024}
+}
+```
+
 ![](https://github.com/TsingZ0/FedKTL/blob/main/FedKTL.png)
 An example of our FedKTL for a 3-class classification task. (a) Rounded and slender rectangles denote models and representations, respectively; dash-dotted and solid borders denote updating and frozen components, respectively; the segmented circle represents the ETF classifier. (b) The feature transformer ($F$) contains two FC layers and one Batch Normalization (BN) layer. (c) An example of the domain alignment step with $K=2$ and $H=3$; one cluster represents one class. 
 
