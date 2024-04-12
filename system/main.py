@@ -31,30 +31,17 @@ def run(args):
         start = time.time()
 
         # Generate args.models
-        if args.model_family == "HtFE3":
-            args.models = [
-                'resnet10(num_classes=args.num_classes)', 
-                'torchvision.models.resnet18(pretrained=False, num_classes=args.num_classes)', 
-                'torchvision.models.resnet34(pretrained=False, num_classes=args.num_classes)', 
-            ]
-
-        elif args.model_family == "HtFE9":
-            args.models = [
-                'resnet4(num_classes=args.num_classes)', 
-                'resnet6(num_classes=args.num_classes)', 
-                'resnet8(num_classes=args.num_classes)', 
-                'resnet10(num_classes=args.num_classes)', 
-                'torchvision.models.resnet18(pretrained=False, num_classes=args.num_classes)', 
-                'torchvision.models.resnet34(pretrained=False, num_classes=args.num_classes)', 
-                'torchvision.models.resnet50(pretrained=False, num_classes=args.num_classes)', 
-                'torchvision.models.resnet101(pretrained=False, num_classes=args.num_classes)', 
-                'torchvision.models.resnet152(pretrained=False, num_classes=args.num_classes)', 
-            ]
-
-        elif args.model_family == "HtFE2":
+        if args.model_family == "HtFE2":
             args.models = [
                 'FedAvgCNN(in_features=3, num_classes=args.num_classes, dim=1600)', 
                 'torchvision.models.resnet18(pretrained=False, num_classes=args.num_classes)', 
+            ]
+            
+        elif args.model_family == "HtFE3":
+            args.models = [
+                'resnet10(num_classes=args.num_classes)', 
+                'torchvision.models.resnet18(pretrained=False, num_classes=args.num_classes)', 
+                'torchvision.models.resnet34(pretrained=False, num_classes=args.num_classes)', 
             ]
 
         elif args.model_family == "HtFE4":
@@ -78,55 +65,17 @@ def run(args):
                 'torchvision.models.resnet152(pretrained=False, num_classes=args.num_classes)'
             ]
 
-        elif args.model_family == "HtFE8-HtC4":
+        elif args.model_family == "HtFE9":
             args.models = [
-                'FedAvgCNN(in_features=3, num_classes=args.num_classes, dim=1600)', 
-                'torchvision.models.googlenet(pretrained=False, aux_logits=False, num_classes=args.num_classes)', 
-                'mobilenet_v2(pretrained=False, num_classes=args.num_classes)', 
+                'resnet4(num_classes=args.num_classes)', 
+                'resnet6(num_classes=args.num_classes)', 
+                'resnet8(num_classes=args.num_classes)', 
+                'resnet10(num_classes=args.num_classes)', 
                 'torchvision.models.resnet18(pretrained=False, num_classes=args.num_classes)', 
                 'torchvision.models.resnet34(pretrained=False, num_classes=args.num_classes)', 
                 'torchvision.models.resnet50(pretrained=False, num_classes=args.num_classes)', 
                 'torchvision.models.resnet101(pretrained=False, num_classes=args.num_classes)', 
-                'torchvision.models.resnet152(pretrained=False, num_classes=args.num_classes)'
-            ]
-            args.global_model = 'FedAvgCNN(in_features=3, num_classes=args.num_classes, dim=1600)'
-            args.heads = [
-                'Head(hidden_dims=[512], num_classes=args.num_classes)', 
-                'Head(hidden_dims=[512, 512], num_classes=args.num_classes)', 
-                'Head(hidden_dims=[512, 256], num_classes=args.num_classes)', 
-                'Head(hidden_dims=[512, 128], num_classes=args.num_classes)', 
-            ]
-
-        elif args.model_family == "Res34-HtC4":
-            args.models = [
-                'torchvision.models.resnet34(pretrained=False, num_classes=args.num_classes)', 
-            ]
-            args.global_model = 'FedAvgCNN(in_features=3, num_classes=args.num_classes, dim=1600)'
-            args.heads = [
-                'Head(hidden_dims=[512], num_classes=args.num_classes)', 
-                'Head(hidden_dims=[512, 512], num_classes=args.num_classes)', 
-                'Head(hidden_dims=[512, 256], num_classes=args.num_classes)', 
-                'Head(hidden_dims=[512, 128], num_classes=args.num_classes)', 
-            ]
-
-        elif args.model_family == "HCNNs8":
-            args.models = [
-                'CNN(num_cov=1, hidden_dims=[], in_features=1, num_classes=args.num_classes)', 
-                'CNN(num_cov=2, hidden_dims=[], in_features=1, num_classes=args.num_classes)', 
-                'CNN(num_cov=1, hidden_dims=[512], in_features=1, num_classes=args.num_classes)', 
-                'CNN(num_cov=2, hidden_dims=[512], in_features=1, num_classes=args.num_classes)', 
-                'CNN(num_cov=1, hidden_dims=[1024], in_features=1, num_classes=args.num_classes)', 
-                'CNN(num_cov=2, hidden_dims=[1024], in_features=1, num_classes=args.num_classes)', 
-                'CNN(num_cov=1, hidden_dims=[1024, 512], in_features=1, num_classes=args.num_classes)', 
-                'CNN(num_cov=2, hidden_dims=[1024, 512], in_features=1, num_classes=args.num_classes)', 
-            ]
-
-        elif args.model_family == "ViTs":
-            args.models = [
-                'torchvision.models.vit_b_16(image_size=32, num_classes=args.num_classes)', 
-                'torchvision.models.vit_b_32(image_size=32, num_classes=args.num_classes)',
-                'torchvision.models.vit_l_16(image_size=32, num_classes=args.num_classes)',
-                'torchvision.models.vit_l_32(image_size=32, num_classes=args.num_classes)',
+                'torchvision.models.resnet152(pretrained=False, num_classes=args.num_classes)', 
             ]
 
         elif args.model_family == "HtM10":
@@ -141,52 +90,6 @@ def run(args):
                 'torchvision.models.resnet152(pretrained=False, num_classes=args.num_classes)', 
                 'torchvision.models.vit_b_16(image_size=32, num_classes=args.num_classes)', 
                 'torchvision.models.vit_b_32(image_size=32, num_classes=args.num_classes)'
-            ]
-
-        elif args.model_family == "NLP_all":
-            args.models = [
-                'fastText(hidden_dim=args.feature_dim, vocab_size=args.vocab_size, num_classes=args.num_classes)', 
-                'LSTMNet(hidden_dim=args.feature_dim, vocab_size=args.vocab_size, num_classes=args.num_classes)', 
-                'BiLSTM_TextClassification(input_size=args.vocab_size, hidden_size=args.feature_dim, output_size=args.num_classes, num_layers=1, embedding_dropout=0, lstm_dropout=0, attention_dropout=0, embedding_length=args.feature_dim)', 
-                'TextCNN(hidden_dim=args.feature_dim, max_len=args.max_len, vocab_size=args.vocab_size, num_classes=args.num_classes)', 
-                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=2, num_classes=args.num_classes, max_len=args.max_len)'
-            ]
-
-        elif args.model_family == "NLP_popular":
-            args.models = [
-                'LSTMNet(hidden_dim=args.feature_dim, vocab_size=args.vocab_size, num_classes=args.num_classes)', 
-                'BiLSTM_TextClassification(input_size=args.vocab_size, hidden_size=args.feature_dim, output_size=args.num_classes, num_layers=1, embedding_dropout=0, lstm_dropout=0, attention_dropout=0, embedding_length=args.feature_dim)', 
-                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=2, num_classes=args.num_classes, max_len=args.max_len)'
-            ]
-
-        elif args.model_family == "NLP_Transformers":
-            args.models = [
-                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=2, num_classes=args.num_classes, max_len=args.max_len)',
-                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=4, num_classes=args.num_classes, max_len=args.max_len)',
-                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=8, num_classes=args.num_classes, max_len=args.max_len)',
-                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=16, num_classes=args.num_classes, max_len=args.max_len)',
-                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=32, num_classes=args.num_classes, max_len=args.max_len)',
-            ]
-
-        elif args.model_family == "MLPs":
-            args.models = [
-                'AmazonMLP(feature_dim=[200])', 
-                'AmazonMLP(feature_dim=[500])', 
-                'AmazonMLP(feature_dim=[1000, 500])', 
-                'AmazonMLP(feature_dim=[1000, 500, 200])', 
-            ]
-
-        elif args.model_family == "MLP_1layer":
-            args.models = [
-                'AmazonMLP(feature_dim=[200])', 
-                'AmazonMLP(feature_dim=[500])', 
-            ]
-
-        elif args.model_family == "MLP_layers":
-            args.models = [
-                'AmazonMLP(feature_dim=[500])', 
-                'AmazonMLP(feature_dim=[1000, 500])', 
-                'AmazonMLP(feature_dim=[1000, 500, 200])', 
             ]
 
         else:
