@@ -8,15 +8,7 @@ from torch.utils.data import DataLoader
 from sklearn.preprocessing import label_binarize
 from sklearn import metrics
 from utils.data_utils import read_client_data
-
-import torchvision
-from flcore.trainmodel.models import *
-
-from flcore.trainmodel.bilstm import *
-from flcore.trainmodel.resnet import *
-from flcore.trainmodel.alexnet import *
-from flcore.trainmodel.mobilenet_v2 import *
-from flcore.trainmodel.transformer import *
+from flcore.trainmodel.models import BaseHeadSplit
 
 class Client(object):
     """
@@ -24,6 +16,7 @@ class Client(object):
     """
 
     def __init__(self, args, id, train_samples, test_samples, **kwargs):
+        torch.manual_seed(0)
         self.algorithm = args.algorithm
         self.dataset = args.dataset
         self.device = args.device
@@ -38,38 +31,9 @@ class Client(object):
         self.learning_rate = args.local_learning_rate
         self.local_epochs = args.local_epochs
 
-        self.feature_dim = args.feature_dim
-
-        which_model = args.models[self.id % len(args.models)]
-        model = eval(which_model).to(self.device)
-
-        if hasattr(args, 'heads'):
-            which_head = args.heads[self.id % len(args.heads)]
-            head = eval(which_head)
-        else:
-            if 'vit' in which_model:
-                head = nn.Sequential(
-                    nn.Linear(self.feature_dim, 768), 
-                    nn.Tanh(),
-                    nn.Linear(768, self.num_classes)
-                )
-            else:
-                head = nn.Linear(self.feature_dim, self.num_classes)
-
-        if 'vit' in which_model:
-            model.heads = nn.AdaptiveAvgPool1d(self.feature_dim)
-        else:
-            model.fc = nn.AdaptiveAvgPool1d(self.feature_dim)
-
-        model = BaseHeadSplit(model, head).to(self.device)
-        # print(f'Client {self.id}', which_model, model)
-
-        # check BatchNorm
-        self.has_BatchNorm = False
-        for layer in model.children():
-            if isinstance(layer, nn.BatchNorm2d):
-                self.has_BatchNorm = True
-                break
+        if args.save_folder_name == 'temp' or 'temp' not in args.save_folder_name:
+            model = BaseHeadSplit(args, self.id).to(self.device)
+            save_item(model, self.role, 'model', self.save_folder_name)
 
         self.train_slow = kwargs['train_slow']
         self.send_slow = kwargs['send_slow']
@@ -77,9 +41,6 @@ class Client(object):
         self.send_time_cost = {'num_rounds': 0, 'total_cost': 0.0}
 
         self.loss = nn.CrossEntropyLoss()
-
-        if args.save_folder_name == 'temp' or 'temp' not in args.save_folder_name:
-            save_item(model, self.role, 'model', self.save_folder_name)
 
 
     def load_train_data(self, batch_size=None):
@@ -189,6 +150,6 @@ def save_item(item, role, item_name, item_path=None):
 def load_item(role, item_name, item_path=None):
     try:
         return torch.load(os.path.join(item_path, role + "_" + item_name + ".pt"))
-    except:
+    except FileNotFoundError:
         print(role, item_name, 'Not Found')
         return None

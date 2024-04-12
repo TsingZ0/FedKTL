@@ -31,7 +31,7 @@ Due to the file size limitation, we only upload the statistics (`config.json`) o
 # System
 
 - `main.py`: System configurations. 
-- `FedKTL.sh`: Command lines to run experiments with default hyperparameter settings. 
+- `total.sh`: Command lines to run experiments for FedKTL with default hyperparameter settings. 
 - `flcore/`: 
     - `clients/`: The code on clients. See [HtFL](https://github.com/TsingZ0/HtFL) for baselines.
     - `servers/`: The code on servers. See [HtFL](https://github.com/TsingZ0/HtFL) for baselines.
@@ -43,8 +43,8 @@ Due to the file size limitation, we only upload the statistics (`config.json`) o
     - `pipelines/`: The modified pipeline code enables the independent operation of the Latent Diffusion Model from other components. 
     - `v1.5/`: The folder to store the pre-trained Stable Diffusion v1.5. We only reserved the sub-folder names here due to limited space. Please download the entire model from the [Hugging Face link](https://huggingface.co/runwayml/stable-diffusion-v1-5/tree/main)
 - `stylegan/`: 
+    - `stylegan-utils/`: Some indispensable utils when using the pre-trained StyleGAN3 and StyleGAN-XL. 
     - `stylegan-3-models/`: The folder to store the pre-trained StyleGAN3 models. Please download the entire models from the following links: [StyleGAN3 (pre-trained on AFHQv2)](https://api.ngc.nvidia.com/v2/models/nvidia/research/stylegan3/versions/1/files/stylegan3-t-afhqv2-512x512.pkl), [StyleGAN3 (pre-trained on Bench)](https://g-75671f.f5dc97.75bc.dn.glob.us/benches/network-snapshot-011000.pkl), [StyleGAN3 (pre-trained on FFHQ-U)](https://api.ngc.nvidia.com/v2/models/nvidia/research/stylegan3/versions/1/files/stylegan3-r-ffhqu-256x256.pkl), and [StyleGAN3 (pre-trained on WikiArt)](https://lambdalabs.com/blog/stylegan-3). 
-    - `stylegan-xl-utils/`: Some utils when using the pre-trained StyleGAN-XL. 
     - `stylegan-xl-models/`: The folder to store the pre-trained StyleGAN-XL. Please down the entire model from [this link](https://s3.eu-central-1.amazonaws.com/avg-projects/stylegan_xl/models/imagenet64.pkl). 
 - `utils/`:
     - `data_utils.py`: The code to read the dataset. 

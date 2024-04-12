@@ -78,6 +78,57 @@ def run(args):
                 'torchvision.models.resnet152(pretrained=False, num_classes=args.num_classes)'
             ]
 
+        elif args.model_family == "HtFE8-HtC4":
+            args.models = [
+                'FedAvgCNN(in_features=3, num_classes=args.num_classes, dim=1600)', 
+                'torchvision.models.googlenet(pretrained=False, aux_logits=False, num_classes=args.num_classes)', 
+                'mobilenet_v2(pretrained=False, num_classes=args.num_classes)', 
+                'torchvision.models.resnet18(pretrained=False, num_classes=args.num_classes)', 
+                'torchvision.models.resnet34(pretrained=False, num_classes=args.num_classes)', 
+                'torchvision.models.resnet50(pretrained=False, num_classes=args.num_classes)', 
+                'torchvision.models.resnet101(pretrained=False, num_classes=args.num_classes)', 
+                'torchvision.models.resnet152(pretrained=False, num_classes=args.num_classes)'
+            ]
+            args.global_model = 'FedAvgCNN(in_features=3, num_classes=args.num_classes, dim=1600)'
+            args.heads = [
+                'Head(hidden_dims=[512], num_classes=args.num_classes)', 
+                'Head(hidden_dims=[512, 512], num_classes=args.num_classes)', 
+                'Head(hidden_dims=[512, 256], num_classes=args.num_classes)', 
+                'Head(hidden_dims=[512, 128], num_classes=args.num_classes)', 
+            ]
+
+        elif args.model_family == "Res34-HtC4":
+            args.models = [
+                'torchvision.models.resnet34(pretrained=False, num_classes=args.num_classes)', 
+            ]
+            args.global_model = 'FedAvgCNN(in_features=3, num_classes=args.num_classes, dim=1600)'
+            args.heads = [
+                'Head(hidden_dims=[512], num_classes=args.num_classes)', 
+                'Head(hidden_dims=[512, 512], num_classes=args.num_classes)', 
+                'Head(hidden_dims=[512, 256], num_classes=args.num_classes)', 
+                'Head(hidden_dims=[512, 128], num_classes=args.num_classes)', 
+            ]
+
+        elif args.model_family == "HCNNs8":
+            args.models = [
+                'CNN(num_cov=1, hidden_dims=[], in_features=1, num_classes=args.num_classes)', 
+                'CNN(num_cov=2, hidden_dims=[], in_features=1, num_classes=args.num_classes)', 
+                'CNN(num_cov=1, hidden_dims=[512], in_features=1, num_classes=args.num_classes)', 
+                'CNN(num_cov=2, hidden_dims=[512], in_features=1, num_classes=args.num_classes)', 
+                'CNN(num_cov=1, hidden_dims=[1024], in_features=1, num_classes=args.num_classes)', 
+                'CNN(num_cov=2, hidden_dims=[1024], in_features=1, num_classes=args.num_classes)', 
+                'CNN(num_cov=1, hidden_dims=[1024, 512], in_features=1, num_classes=args.num_classes)', 
+                'CNN(num_cov=2, hidden_dims=[1024, 512], in_features=1, num_classes=args.num_classes)', 
+            ]
+
+        elif args.model_family == "ViTs":
+            args.models = [
+                'torchvision.models.vit_b_16(image_size=32, num_classes=args.num_classes)', 
+                'torchvision.models.vit_b_32(image_size=32, num_classes=args.num_classes)',
+                'torchvision.models.vit_l_16(image_size=32, num_classes=args.num_classes)',
+                'torchvision.models.vit_l_32(image_size=32, num_classes=args.num_classes)',
+            ]
+
         elif args.model_family == "HtM10":
             args.models = [
                 'FedAvgCNN(in_features=3, num_classes=args.num_classes, dim=1600)', 
@@ -92,9 +143,50 @@ def run(args):
                 'torchvision.models.vit_b_32(image_size=32, num_classes=args.num_classes)'
             ]
 
-        elif args.model_family == "CNN":
+        elif args.model_family == "NLP_all":
             args.models = [
-                'FedAvgCNN(in_features=3, num_classes=args.num_classes, dim=1600)', 
+                'fastText(hidden_dim=args.feature_dim, vocab_size=args.vocab_size, num_classes=args.num_classes)', 
+                'LSTMNet(hidden_dim=args.feature_dim, vocab_size=args.vocab_size, num_classes=args.num_classes)', 
+                'BiLSTM_TextClassification(input_size=args.vocab_size, hidden_size=args.feature_dim, output_size=args.num_classes, num_layers=1, embedding_dropout=0, lstm_dropout=0, attention_dropout=0, embedding_length=args.feature_dim)', 
+                'TextCNN(hidden_dim=args.feature_dim, max_len=args.max_len, vocab_size=args.vocab_size, num_classes=args.num_classes)', 
+                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=2, num_classes=args.num_classes, max_len=args.max_len)'
+            ]
+
+        elif args.model_family == "NLP_popular":
+            args.models = [
+                'LSTMNet(hidden_dim=args.feature_dim, vocab_size=args.vocab_size, num_classes=args.num_classes)', 
+                'BiLSTM_TextClassification(input_size=args.vocab_size, hidden_size=args.feature_dim, output_size=args.num_classes, num_layers=1, embedding_dropout=0, lstm_dropout=0, attention_dropout=0, embedding_length=args.feature_dim)', 
+                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=2, num_classes=args.num_classes, max_len=args.max_len)'
+            ]
+
+        elif args.model_family == "NLP_Transformers":
+            args.models = [
+                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=2, num_classes=args.num_classes, max_len=args.max_len)',
+                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=4, num_classes=args.num_classes, max_len=args.max_len)',
+                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=8, num_classes=args.num_classes, max_len=args.max_len)',
+                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=16, num_classes=args.num_classes, max_len=args.max_len)',
+                'TransformerModel(ntoken=args.vocab_size, d_model=args.feature_dim, nhead=8, nlayers=32, num_classes=args.num_classes, max_len=args.max_len)',
+            ]
+
+        elif args.model_family == "MLPs":
+            args.models = [
+                'AmazonMLP(feature_dim=[200])', 
+                'AmazonMLP(feature_dim=[500])', 
+                'AmazonMLP(feature_dim=[1000, 500])', 
+                'AmazonMLP(feature_dim=[1000, 500, 200])', 
+            ]
+
+        elif args.model_family == "MLP_1layer":
+            args.models = [
+                'AmazonMLP(feature_dim=[200])', 
+                'AmazonMLP(feature_dim=[500])', 
+            ]
+
+        elif args.model_family == "MLP_layers":
+            args.models = [
+                'AmazonMLP(feature_dim=[500])', 
+                'AmazonMLP(feature_dim=[1000, 500])', 
+                'AmazonMLP(feature_dim=[1000, 500, 200])', 
             ]
 
         else:
@@ -103,7 +195,7 @@ def run(args):
         for model in args.models:
             print(model)
 
-        # select algorithm
+        # select algorithm            
         if args.algorithm == "FedKTL-stylegan-xl":
             server = FedKTL_stylegan_xl(args, i)
 
@@ -145,8 +237,10 @@ if __name__ == "__main__":
     parser.add_argument('-nb', "--num_classes", type=int, default=10)
     parser.add_argument('-m', "--model_family", type=str, default="cnn")
     parser.add_argument('-lbs', "--batch_size", type=int, default=10)
-    parser.add_argument('-lr', "--local_learning_rate", type=float, default=0.01,
+    parser.add_argument('-lr', "--local_learning_rate", type=float, default=0.005,
                         help="Local learning rate")
+    parser.add_argument('-ld', "--learning_rate_decay", type=bool, default=False)
+    parser.add_argument('-ldg', "--learning_rate_decay_gamma", type=float, default=0.99)
     parser.add_argument('-gr', "--global_rounds", type=int, default=2000)
     parser.add_argument('-ls', "--local_epochs", type=int, default=1, 
                         help="Multiple update steps in one local epoch.")
@@ -183,24 +277,21 @@ if __name__ == "__main__":
     parser.add_argument('-GPath', "--generator_path", type=str, default='stylegan/stylegan-xl-models/imagenet64.pkl')
     parser.add_argument('-prompt', "--stable_diffusion_prompt", type=str, default='a cat')
     parser.add_argument('-slr', "--server_learning_rate", type=float, default=0.01)
-    parser.add_argument('-se', "--server_epochs", type=int, default=100)
     parser.add_argument('-sbs', "--server_batch_size", type=int, default=100)
-    parser.add_argument('-gbs', "--gen_batch_size", type=int, default=4,
-                        help="Not related to the performance. A small value saves GPU memory.")
+    parser.add_argument('-se', "--server_epochs", type=int, default=100)
     parser.add_argument('-lam', "--lamda", type=float, default=1.0)
     parser.add_argument('-mu', "--mu", type=float, default=50.0)
+    parser.add_argument('-gbs', "--gen_batch_size", type=int, default=4,
+                        help="Not related to the performance. A small value saves GPU memory.")
 
 
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.device_id
-    # torch.cuda.set_device(int(args.device_id))
 
     if args.device == "cuda" and not torch.cuda.is_available():
         print("\ncuda is not avaiable.\n")
         args.device = "cpu"
-    # else:
-    #     args.device += f':{args.device_id}'
 
     print("=" * 50)
 
@@ -208,6 +299,9 @@ if __name__ == "__main__":
     print("Local batch size: {}".format(args.batch_size))
     print("Local steps: {}".format(args.local_epochs))
     print("Local learing rate: {}".format(args.local_learning_rate))
+    print("Local learing rate decay: {}".format(args.learning_rate_decay))
+    if args.learning_rate_decay:
+        print("Local learing rate decay gamma: {}".format(args.learning_rate_decay_gamma))
     print("Total number of clients: {}".format(args.num_clients))
     print("Clients join in each round: {}".format(args.join_ratio))
     print("Clients randomly join: {}".format(args.random_join_ratio))
