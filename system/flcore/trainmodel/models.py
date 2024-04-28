@@ -33,6 +33,12 @@ class BaseHeadSplit(nn.Module):
 
         if hasattr(args, 'heads'):
             self.head = eval(args.heads[cid % len(args.heads)])
+        elif 'vit' in args.models[cid % len(args.models)]:
+            self.head = nn.Sequential(
+                nn.Linear(args.feature_dim, 768), 
+                nn.Tanh(),
+                nn.Linear(768, args.num_classes)
+            )
         else:
             self.head = nn.Linear(args.feature_dim, args.num_classes)
         
