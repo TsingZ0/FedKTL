@@ -5,9 +5,9 @@ This is the implementation of our paper [*An Upload-Efficient Scheme for Transfe
 *Key words: pre-trained generative model, knowledge transfer, federated learning, data heterogeneity, model heterogeneity*
 
 - [Poster](https://github.com/TsingZ0/FedKTL/blob/main/FedKTL.png)
-- [Slides](https://github.com/TsingZ0/FedKTL/blob/main/FedKTL.pdf) *From another perspective, starting from the scarcity of edge data, **no longer confined to the field of federated learning**.*
+- [Slides](https://github.com/TsingZ0/FedKTL/blob/main/FedKTL.pdf) *From another perspective: large and small model collaboration*
 
-Take away: we propose FedKTL, a knowledge transfer scheme that transfers pre-existing common knowledge from server-side public pre-trained generators to participating clients, irrespective of the generators' pre-training datasets, while also sharing consensus knowledge among participating clients. 
+Take away: We introduce FedKTL, a Knowledge Transfer Loop (KTL) that (1) transfers common knowledge from a server-side pre-trained generator to client small models, regardless of the generator's pre-training datasets, and (2) co shares task-related knowledge among clients through federated learning.
 
 **Citation**
 
