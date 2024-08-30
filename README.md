@@ -40,7 +40,7 @@ Due to the file size limitation, we only upload the statistics (`config.json`) o
         - `serverktl_stylegan_3.py`: The code for using the pre-trained [StyleGAN3](https://proceedings.neurips.cc/paper/2021/hash/076ccd93ad68be51f23707988e934906-Abstract.html) on the server. 
         - `serverktl_stylegan_xl.py`: The code for using the pre-trained [StyleGAN-XL](https://dl.acm.org/doi/abs/10.1145/3528233.3530738) on the server. 
     - `trainmodel/`: The code for some heterogeneous client models. 
-- `stable-diffusion/`: 
+- `stable-diffusion/` (Other text-to-image models are also supported): 
     - `pipelines/`: The customized pipeline enables the independent operation of the Latent Diffusion Model from other components. 
     - `v1.5/`: The folder to store the pre-trained Stable Diffusion v1.5. Large model files are not included here due to limited space. Please download primary `safetensors` files into sub-folders from the [Hugging Face link](https://huggingface.co/runwayml/stable-diffusion-v1-5/tree/main). For further instructions on running Stable Diffusion, please see the documentation of the `diffusers` package. 
 - `stylegan/`: 
