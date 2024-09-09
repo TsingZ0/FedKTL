@@ -9,6 +9,9 @@ This is the implementation of our paper [*An Upload-Efficient Scheme for Transfe
 
 Take away: We introduce FedKTL, a Knowledge Transfer Loop (KTL) that (1) transfers **common knowledge** from a server-side pre-trained generator to client small models, regardless of the generator's pre-training datasets, and (2) shares **task-specific knowledge** among clients through federated learning.
 
+![](main.png)
+An example of our FedKTL for a 3-class classification task. Rounded and slender rectangles denote models and representations, respectively; dash-dotted and solid borders denote updating and frozen components, respectively; the segmented circle represents the ETF classifier. 
+
 **Citation**
 
 ```
@@ -19,9 +22,6 @@ Take away: We introduce FedKTL, a Knowledge Transfer Loop (KTL) that (1) transfe
   year={2024}
 }
 ```
-
-![](https://github.com/TsingZ0/FedKTL/blob/main/main.png)
-An example of our FedKTL for a 3-class classification task. (a) Rounded and slender rectangles denote models and representations, respectively; dash-dotted and solid borders denote updating and frozen components, respectively; the segmented circle represents the ETF classifier. (b) The feature transformer ($F$) contains two FC layers and one Batch Normalization (BN) layer. (c) An example of the domain alignment step with $K=2$ and $H=3$; one cluster represents one class. 
 
 
 # Dataset & Environments
