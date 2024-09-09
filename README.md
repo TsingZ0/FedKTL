@@ -7,7 +7,7 @@ This is the implementation of our paper [*An Upload-Efficient Scheme for Transfe
 - [Poster](https://github.com/TsingZ0/FedKTL/blob/main/FedKTL.png)
 - [Slides](https://github.com/TsingZ0/FedKTL/blob/main/FedKTL.pdf) *From another perspective: Generative Model-Assisted Collaborative Learning*
 
-Take away: We introduce FedKTL, a Knowledge Transfer Loop (KTL) that (1) transfers **common knowledge** from a server-side pre-trained generator to client small models, regardless of the generator's pre-training datasets, and (2) shares **task-specific knowledge** among clients through federated learning.
+Take away: We introduce FedKTL, a Federated Knowledge Transfer Loop (KTL) that (1) transfers **common knowledge** from a server-side pre-trained generator to client small models, regardless of the generator's pre-training datasets, and (2) shares **task-specific knowledge** among clients through federated learning.
 
 ![](main.png)
 An example of our FedKTL for a 3-class classification task. Rounded and slender rectangles denote models and representations, respectively; dash-dotted and solid borders denote updating and frozen components, respectively; the segmented circle represents the ETF classifier. 
