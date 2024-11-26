@@ -34,8 +34,8 @@ Due to the file size limitation, we only upload the statistics (`config.json`) o
 - `main.py`: System configurations. 
 - `total.sh`: Command lines to run experiments for FedKTL with default hyperparameter settings. 
 - `flcore/`: 
-    - `clients/`: The code on clients. See [HtFL](https://github.com/TsingZ0/HtFL) for baselines.
-    - `servers/`: The code on servers. See [HtFL](https://github.com/TsingZ0/HtFL) for baselines.
+    - `clients/`: The code on clients. See [HtFLlib](https://github.com/TsingZ0/HtFLlib) for baselines.
+    - `servers/`: The code on servers. See [HtFLlib](https://github.com/TsingZ0/HtFLlib) for baselines.
         - `serverktl_stable_diffusion.py`: the code for using the pre-trained [Stable Diffusion](https://openaccess.thecvf.com/content/CVPR2022/html/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.html) on the server. 
         - `serverktl_stylegan_3.py`: The code for using the pre-trained [StyleGAN3](https://proceedings.neurips.cc/paper/2021/hash/076ccd93ad68be51f23707988e934906-Abstract.html) on the server. 
         - `serverktl_stylegan_xl.py`: The code for using the pre-trained [StyleGAN-XL](https://dl.acm.org/doi/abs/10.1145/3528233.3530738) on the server. 
